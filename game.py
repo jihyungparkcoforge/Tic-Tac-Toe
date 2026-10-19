@@ -1,6 +1,3 @@
-from ai import AI
-
-
 def play(game_board, ai=None):
     mark = "X"
 
