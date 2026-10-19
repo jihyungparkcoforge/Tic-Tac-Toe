@@ -7,31 +7,31 @@ class AI:
 
     def next_ai_move(self, player, game_board):
         if self.difficulty == "hard":
-            _, ai_move = self.minimax(
+            _, ai_move = self._minimax(
                 player=player,
                 game_board=game_board,
             )
             return ai_move
         else:
-            return self.random_move(
+            return self._random_move(
                 player=player,
                 game_board=game_board,
             )
 
-    def random_move(self, player, game_board):
-        moves = game_board.get_available_moves()
+    def _random_move(self, player, game_board):
+        moves = game_board.empty_cells()
 
         return random.choice(moves)
 
 
-    def minimax(self, player, game_board):
+    def _minimax(self, player, game_board):
         if game_board.has_won("O"):
             return 10, None
 
         if game_board.has_won("X"):
             return -10, None
 
-        moves = game_board.get_available_moves()
+        moves = game_board.empty_cells()
 
         if not moves:
             return 0, None
@@ -46,7 +46,7 @@ class AI:
             game_board.place_mark(row, col, player)
 
             next_player = "X" if player == "O" else "O"
-            score, _ = self.minimax(next_player, game_board)
+            score, _ = self._minimax(next_player, game_board)
 
             game_board.board[row][col] = original
 
