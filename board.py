@@ -22,9 +22,12 @@ class Board:
             self.board[row][col] = " "
 
     def empty_cells(self):
+        avail = []
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
-                print((i, j))
+                if self.board[i][j] == " ":
+                    avail.append((i,j))
+        return avail
 
     def has_won(self, mark):
         for row in self.board:
@@ -56,12 +59,3 @@ class Board:
 
             print()
         print(" -------------")
-
-    def get_available_moves(self):
-        avail = []
-        for i in range(len(self.board)):
-            for j in range(len(self.board[i])):
-                if self.board[i][j] == " ":
-                    avail.append([i,j])
-
-        return avail
