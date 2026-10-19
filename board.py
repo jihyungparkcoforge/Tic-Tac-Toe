@@ -1,11 +1,10 @@
 class Board:
-    def __init__(self, board, turn):
+    def __init__(self):
         self.board = [
             [" ", " ", " "],
             [" ", " ", " "],
             [" ", " ", " "],
         ]
-        self.turn = "player 1"
 
 
     def place_mark(self, row, col, mark):
@@ -36,3 +35,14 @@ class Board:
             for j in range(len(self.board[i])):
                 if self.board[i][j] == " ":
                     return False
+        return True
+
+    def display(self):
+        for i in range(len(self.board)):
+            print("--------")
+            print("|",end="")
+            for j in range(len(self.board[i])):
+                print(self.board[i][j], end="|")
+
+            print()
+        print("--------")
