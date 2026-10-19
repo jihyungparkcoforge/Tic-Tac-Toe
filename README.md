@@ -23,7 +23,7 @@ python3 guess.py
 6. At the start, the player chooses two players or versus computer. In versus computer mode, the human plays X and the computer plays O, and the player picks Easy or Hard.
 7. Easy picks a random empty cell. Hard uses the minimax algorithm and never loses when it plays second.
 
-## Test cases
+## Test cases for main output (print)
 
 
 |#|What I tested | What I did | Expected result | Actual result | Pass? |
