@@ -1,6 +1,3 @@
-from ai import AI
-
-
 def play(game_board, ai=None):
     mark = "X"
 
@@ -18,9 +15,10 @@ def play(game_board, ai=None):
 
             row, col = ai_move
         else:
-            point = input("Where do you want to place? [0-2], [0-2]: \n")
+            point = input("Where do you want to place? [1-3], [1-3]: \n")
             row, col = map(int, point.split(","))
-
+            row -= 1
+            col -= 1
         if not game_board.place_mark(row, col, mark):
             continue
 
@@ -35,4 +33,5 @@ def play(game_board, ai=None):
         else:
             mark = "X"
 
-    print("Draw!")
+    if game_board.is_full():
+        print("Draw!")

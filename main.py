@@ -1,8 +1,7 @@
 import sys
 
-from board import Board
 from ai import AI
-
+from board import Board
 from game import play
 
 while True:

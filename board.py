@@ -46,11 +46,11 @@ class Board:
         return True
 
     def display(self):
-        print("   0   1   2 ")
+        print("   1   2   3 ")
         for i in range(len(self.board)):
 
             print(" -------------")
-            print(f"{i}|",end="")
+            print(f"{i+1}|",end="")
             for j in range(len(self.board[i])):
                 print(f" {self.board[i][j]} ", end="|")
 
