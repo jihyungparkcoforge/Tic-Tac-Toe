@@ -35,10 +35,7 @@ class Board:
             if all(self.board[row][col] == mark for row in range(3)):
                 return True
 
-        if all(self.board[i][i] == mark for i in range(3)):
-            return True
-
-        return all(self.board[i][2 - i] == mark for i in range(3))
+        return all(self.board[i][2 - i] == mark for i in range(3)) | all(self.board[i][i] == mark for i in range(3))
 
 
     def is_full(self):
@@ -59,3 +56,12 @@ class Board:
 
             print()
         print(" -------------")
+
+    def get_available_moves(self):
+        avail = []
+        for i in range(len(self.board)):
+            for j in range(len(self.board[i])):
+                if self.board[i][j] == " ":
+                    avail.append([i,j])
+
+        return avail
