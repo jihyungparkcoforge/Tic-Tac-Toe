@@ -5,12 +5,21 @@ Tic-Tac-Toe game that runs in the terminal. It supports two players or one playe
 
 ## Quick Start
 
-```{shell}
+```sh
 git clone https://github.com/jihyungparkcoforge/Tic-Tac-Toe.git
-cd number-guessing-game
-uv venv
+cd Tic-Tac-Toe
+python3 -m venv .venv
 source .venv/bin/activate
-python3 guess.py
+python -m pip install -r requirements.txt
+python main.py
+```
+
+## Run tests
+
+With the virtual environment activated, run:
+
+```sh
+python -m pytest
 ```
 
 ## Description

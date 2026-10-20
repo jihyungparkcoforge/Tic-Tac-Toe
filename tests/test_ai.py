@@ -1,6 +1,8 @@
-from copy import deepcopy
+import random
 
-from ai import AI
+import pytest
+
+from ai import AI, EasyAI, HardAI
 from board import Board
 
 
@@ -9,7 +11,7 @@ def test_easy_returns_empty_cell():
     board.place_mark(0, 0, "X")
     available = board.empty_cells()
 
-    move = AI("easy").next_ai_move("O", board)
+    move = EasyAI(random.Random(0)).choose_move(board, "O")
 
     assert move in available
 
@@ -25,7 +27,7 @@ def test_hard_takes_winning():
     for row, col, mark in placements:
         board.place_mark(row, col, mark)
 
-    move = AI("hard").next_ai_move("O", board)
+    move = HardAI(random.Random(0)).choose_move(board, "O")
 
     assert move == (2, 0)
 
@@ -38,16 +40,40 @@ def test_hard_blocks():
     board.place_mark(0, 1, "X")
     board.place_mark(1, 1, "O")
 
-    move = AI("hard").next_ai_move("O", board)
+    move = HardAI(random.Random(0)).choose_move(board, "O")
 
     assert move == (0, 2)
 
 
-def test_ai_does_not_change_board():
+@pytest.mark.parametrize("ai_class", [EasyAI, HardAI])
+def test_ai_does_not_change_board(ai_class):
     board = Board()
     board.place_mark(0, 0, "X")
-    original = deepcopy(board.board)
+    original = board.snapshot()
 
-    AI(difficulty="hard").next_ai_move("O", board)
+    ai_class(random.Random(0)).choose_move(board, "O")
 
-    assert board.board == original
+    assert board.snapshot() == original
+
+
+def test_abstract_ai_cannot_be_created():
+    with pytest.raises(TypeError):
+        AI(random.Random(0))
+
+
+def test_hard_never_loses_as_second_player():
+    board = Board()
+    ai = HardAI(random.Random(0))
+
+    def explore(mark):
+        assert not board.has_won("X")
+        if board.has_won("O") or board.is_full():
+            return
+
+        moves = board.empty_cells() if mark == "X" else [ai.choose_move(board, mark)]
+        for row, col in moves:
+            assert board.place_mark(row, col, mark)
+            explore("O" if mark == "X" else "X")
+            board.remove_mark(row, col)
+
+    explore("X")

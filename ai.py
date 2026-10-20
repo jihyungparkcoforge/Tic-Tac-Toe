@@ -1,27 +1,26 @@
 import random
+from abc import ABC, abstractmethod
 
 
-class AI:
-    def __init__(self, difficulty="easy"):
-        self.difficulty = difficulty
+class AI(ABC):
+    def __init__(self, rng: random.Random):
+        self._rng = rng
 
-    def next_ai_move(self, player, game_board):
-        if self.difficulty == "hard":
-            _, ai_move = self._minimax(
-                player=player,
-                game_board=game_board,
-            )
-            return ai_move
-        else:
-            return self._random_move(
-                player=player,
-                game_board=game_board,
-            )
+    @abstractmethod
+    def choose_move(self, board, mark):
+        """Return an empty (row, col) without changing the board."""
+        pass
 
-    def _random_move(self, player, game_board):
-        moves = game_board.empty_cells()
 
-        return random.choice(moves)
+class EasyAI(AI):
+    def choose_move(self, board, mark):
+        return self._rng.choice(board.empty_cells())
+
+
+class HardAI(AI):
+    def choose_move(self, board, mark):
+        _, move = self._minimax(mark, board)
+        return move
 
 
     def _minimax(self, player, game_board):
@@ -42,13 +41,13 @@ class AI:
         for move in moves:
             row, col = move
 
-            original = game_board.board[row][col]
             game_board.place_mark(row, col, player)
 
             next_player = "X" if player == "O" else "O"
-            score, _ = self._minimax(next_player, game_board)
-
-            game_board.board[row][col] = original
+            try:
+                score, _ = self._minimax(next_player, game_board)
+            finally:
+                game_board.remove_mark(row, col)
 
             if player == "O":
                 if score > best_score:

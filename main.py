@@ -1,6 +1,7 @@
+import random
 import sys
 
-from ai import AI
+from ai import EasyAI, HardAI
 from board import Board
 from game import play
 
@@ -20,10 +21,12 @@ def main():
             while True:
                 level = input("What difficulty level do you want to play?\n 1. easy   2. hard\n").strip()
                 if level == "1":
-                    play(game_board = game_board, ai = AI(difficulty="easy"))
+                    ai = EasyAI(random.Random())
+                    play(game_board = game_board, ai = ai)
                     break
                 elif level == "2":
-                    play(game_board = game_board, ai = AI(difficulty="hard"))
+                    ai = HardAI(random.Random())
+                    play(game_board = game_board, ai = ai)
                     break
                 else:
                     print("Invalid input. \n")
@@ -39,6 +42,8 @@ def main():
                 sys.exit()
             else:
                 print("Invalid input. \n")
+
+
 
 if __name__ == "__main__":
     main()

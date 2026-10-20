@@ -4,3 +4,6 @@ __pycache__/
 uv.lock
 pyproject.toml
 .ruff_cache/
+.idea/
+.vscode/
+.pytest_cache/
