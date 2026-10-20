@@ -127,3 +127,9 @@ def test_full_board_without_winner_is_draw():
     assert board.is_full()
     assert not board.has_won("X")
     assert not board.has_won("O")
+
+def test_place_mark_invalid():
+    board = Board()
+
+    assert board.place_mark(-1, 0, "X") == False
+    assert board.place_mark(2, 3, "X") == False

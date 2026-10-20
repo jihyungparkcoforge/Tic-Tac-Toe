@@ -8,10 +8,9 @@ class Board:
 
 
     def place_mark(self, row, col, mark):
-        if self._board[row][col] != " ":
-            return False
-
         if row not in [0,1,2] or col not in [0,1,2]:
+            return False
+        if self._board[row][col] != " ":
             return False
 
         if mark in ["X", "O"]:
