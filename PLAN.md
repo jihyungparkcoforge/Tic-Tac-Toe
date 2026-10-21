@@ -26,6 +26,9 @@ starting file for get user preference about mode/difficulty choice.
 ### ai.py
 After creating a base AI class, I Inheritance it to create EasyAI and HardAI. Although they both have a function named `choose_move`, each derived class performs a different role. EasyAI uses `random.choice()` to randomly select one of the remaining empty cells, while HardAI uses a custom `_minimax()` function to choose the optimal move.
 
+### tests/
+This directory contains unit tests for the functions used in `board.py` and `ai.py`, respectively. It is also used for CI in GitHub Actions, and the individual test elements are explained to some extent in this file and in the README.
+
 ## Decisions
 I decided to create a `display` function directly in `board.py` to show the current board state. Since the `board` matrix itself is private, I judged that accessing it directly from outside would be inappropriate. Although I had previously pointed out that using `print` from outside `main.py` in the `public` directory was problematic, I received permission from Adam (the instructor) to create the function.
 
