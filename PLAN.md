@@ -5,8 +5,8 @@ Tic-Tac-Toe game that runs in the terminal. It supports two players or one playe
 
 |ID|Requirements|How to verify it|
 |---|-----|-----|
-|1|Board is 3X3 and "X" starts first|pytest: initialize new board and check board size by call `empty_cell` and see returned list length is 3X3 = 9 & manual check for first turn mark|
-|2|User can select two number between 1-3| pytest: check range input for `place_mark` function. Manual test of instruction|
+|1|Board is 3X3 and "X" starts first|pytest: initialize new board and check board size by call `empty_cells` and see returned list length is 3X3 = 9 & manual check for first turn mark|
+|2|User can select two number between 1-3 (processed by 0-2)| pytest: check range input for `place_mark` function. Manual test of instruction|
 |3|Print current board everytime| Manual testing|
 |4|Can't place mark in taken cell| pytest: call `place_mark` with same parameter twice|
 |5|horizontal, vertical, diagonal, anti-diagonal win condition | pytest: `has_won` with custom board setting|
