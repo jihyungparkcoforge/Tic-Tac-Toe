@@ -29,7 +29,7 @@ After creating a base AI class, I Inheritance it to create EasyAI and HardAI. Al
 ## Decisions
 I decided to create a `display` function directly in `board.py` to show the current board state. Since the `board` matrix itself is private, I judged that accessing it directly from outside would be inappropriate. Although I had previously pointed out that using `print` from outside `main.py` in the `public` directory was problematic, I received permission from Adam (the instructor) to create the function.
 
-I decided to create a large loop to implement a feature that allows the game to be replayed. Most games don’t end after a single round; they require you to try again. Although this isn’t listed in the requirements, we determined it was important for maintaining a smooth flow.
+I decided to create a large loop to implement a feature that allows the game to be replayed. There were two options: one where the console closed immediately after displaying the results, and another where the user was asked whether to exit or try again. Most games don’t end after a single round; they require you to try again. Although this isn’t listed in the requirements, we determined it was important for maintaining a smooth flow.
 
 ## What changed
 I moved the main loop to `game.py`. It was originally in `main.py`, but since `game.py` was listed in the “required files” and is responsible for turn management and overall game control, I left only the function calls and the mode and difficulty settings in `main.py`.

@@ -1,3 +1,7 @@
+"""
+Main file. It reads the user's preferences and sets the parameters for the loop in `game.py` before running it.
+"""
+
 import random
 import sys
 
@@ -17,6 +21,7 @@ def main():
             else:
                 print("Invalid input. \n")
 
+        # If the user selects single-player mode, the program prompts the user to enter an AI difficulty level, creates an AI object, and passes it as a parameter to game.play().
         if gamemode == "1":
             while True:
                 level = input("What difficulty level do you want to play?\n 1. easy   2. hard\n").strip()
@@ -33,7 +38,7 @@ def main():
         else:
             play(game_board = game_board)
 
-
+        # Depending on the user's choice, the game either continues or ends.
         while True:
             game_end = input("Do you want to play again?\n 1. Yes   2. No\n").strip()
             if game_end == "1":
