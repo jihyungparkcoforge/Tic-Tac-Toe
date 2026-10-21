@@ -98,6 +98,11 @@ def test_empty_cells():
     ])
     assert board.empty_cells() == [(1,2),(2,1)]
 
+def test_board_size():
+    board = Board()
+    assert len(board.empty_cells()) == 9
+
+
 def test_empty_at_beginning():
     board = Board()
 
