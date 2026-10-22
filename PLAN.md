@@ -1,5 +1,6 @@
 ## Goal. Two sentences on what the game is and who plays it.
-Tic-Tac-Toe game that runs in the terminal. It supports two players or one player against a computer opponent. This is an individual assignment. Write the plan, code, and tests yourself. Do not use AI tools for any part of it, including chat assistants and AI code completion
+Tic-Tac-Toe game that runs in the terminal. It supports two players or one player against a computer opponent.
+Each AI determines the difficulty level using either a random selection or the minimax algorithm, and ultimately, the program must be able to determine the winner of the game.
 
 ## Requirements
 
